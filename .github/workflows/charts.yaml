@@ -61,7 +61,7 @@ jobs:
         cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf prometheus ; helm fetch prometheus-community/prometheus  --untar
         cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf alertmanager ; helm fetch prometheus-community/alertmanager --untar
         cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm *.tgz -f
-        cd ${GITHUB_WORKSPACE}/ObservableServer/ && helm package ./ &&  helm cm-push observablestack-${TAG}.tgz sync
+        cd ${GITHUB_WORKSPACE}/ObservableServer/ && helm package ./ &&  helm cm-push observableserver-${TAG}.tgz sync
 
     - name: Merge Upstream Repo
       shell: bash
