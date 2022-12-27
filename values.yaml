@@ -46,7 +46,7 @@ prometheus:
       hosts:
         - prometheus.{{ .Values.global.domain }}
       tls:
-        - secretName: {{ .Values.global.secretName }}
+        - secretName: "{{ .Values.global.secretName }}"
           hosts:
             - prometheus.{{ .Values.global.domain }}
   alertmanager:
