@@ -1,0 +1,75 @@
+name: BUILD Chart
+
+on:
+  pull_request:
+  push:
+    paths:
+      - 'charts'
+      - 'templates'
+      - 'Chart.yaml'
+      - 'values.yaml'
+      - '.github/workflows/charts.yaml'
+    branches:
+      - main
+
+env:
+  REPO_URL: https://github.com/solo-cat/ObservableServer.git
+  REPO_BRANCH: main
+  TZ: Asia/Shanghai
+  TAG: 0.1.3 
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@main
+      with:
+        ref: ${{ github.head_ref }}
+
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+        REPO_PASSWORD: ${{ secrets.HELM_REPO_PASSWORD }}
+      shell: bash
+      run: |
+        sudo apt update 
+        sudo apt install git -y
+        sudo timedatectl set-timezone "$TZ"
+        sudo curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+        helm plugin install https://github.com/chartmuseum/helm-push.git
+        helm repo add neo4j https://helm.neo4j.com/neo4j
+        helm repo add grafana https://grafana.github.io/helm-charts
+        helm repo add deepflow https://deepflowys.github.io/deepflow
+        helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+        echo "$REPO_PASSWORD" | helm repo add sync --username=admin --password-stdin https://artifact.onwalk.net/chartrepo/k8s/
+        helm repo up
+
+    - name: Clone Source
+      shell: bash
+      run: |
+        git clone $REPO_URL -b $REPO_BRANCH
+
+    - name: Build and Push chart
+      shell: bash
+      run: |
+        echo ${GITHUB_WORKSPACE}
+        cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf loki ; helm fetch grafana/loki --untar
+        cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf neo4j ; helm fetch neo4j/neo4j --untar
+        cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf grafana ; helm fetch grafana/grafana --untar
+        cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf deepflow ; helm fetch deepflow/deepflow --untar
+        cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf prometheus ; helm fetch prometheus-community/prometheus  --untar
+        cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf alertmanager ; helm fetch prometheus-community/alertmanager --untar
+        cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm *.tgz -f
+        cd ${GITHUB_WORKSPACE}/ObservableServer/ && helm package ./ &&  helm cm-push observablestack-${TAG}.tgz sync
+
+    - name: Merge Upstream Repo
+      shell: bash
+      run: |
+        git config user.name shenlan
+        git config user.email manbuzhe2009@qq.com
+        cd ${GITHUB_WORKSPACE}/ && rm *.tgz -f
+        cd ${GITHUB_WORKSPACE}/charts && rm *.tgz -f
+        git add -A
+        git commit -a -m "Auto Merged"
+        git push

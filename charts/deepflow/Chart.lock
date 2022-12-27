@@ -1,0 +1,15 @@
+dependencies:
+- name: clickhouse
+  repository: ""
+  version: '*.*.*'
+- name: mysql
+  repository: ""
+  version: '*.*.*'
+- name: deepflow-agent
+  repository: ""
+  version: '*.*.*'
+- name: grafana
+  repository: https://grafana.github.io/helm-charts
+  version: 6.48.0
+digest: sha256:f8a3e237ee7924941858e202760c155c660cb34978bbbdb9a5219303720def70
+generated: "2022-12-23T02:21:16.63945031Z"
