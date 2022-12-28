@@ -17,6 +17,27 @@ global:
   domain: onwalk.net
   namespace: monitoring
   secretName: observable-tls
+loki-distributed:
+  ingress:
+    hosts:
+      - "loki.onwalk.net"
+    tls:
+      - secretName: observable-tls
+        hosts:
+          - loki.onwalk.net
+deepflow:
+  ingress:
+    ingressClassName: nginx
+prometheus:
+  server:
+    ingress:
+      ingressClassName: nginx
+      hosts:
+        - prometheus.onwalk.net
+      tls:
+        - secretName: observable-tls
+          hosts:
+            - prometheus.onwalk.net
 EOF
 
 helm repo add stable https://artifact.onwalk.net/chartrepo/k8s/

@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 
 global:
-  domain: onwalk.net 
-  namespace: monitoring 
+  domain: onwalk.net
+  namespace: monitoring
   secretName: observable-tls
   aws:
     region: "cn-northwest-1"
@@ -25,11 +25,11 @@ loki-distributed:
     enabled: true
     ingressClassName: nginx
     hosts:
-      - "loki.{{ .Values.global.domain }}"
+      - loki.onwalk.net
     tls:
-      - secretName: "{{ .Values.global.secretName }}"
+      - secretName: observable-tls
         hosts:
-          - "loki.{{ .Values.global.domain }}"
+          - loki.onwalk.net
 deepflow:
   enabled: true
   ingress:
@@ -44,11 +44,11 @@ prometheus:
       enabled: true
       ingressClassName: nginx
       hosts:
-        - "prometheus.{{ .Values.global.domain }}"
+        - prometheus.onwalk.net
       tls:
-        - secretName: "{{ .Values.global.secretName }}"
+        - secretName: observable-tls
           hosts:
-            - "prometheus.{{ .Values.global.domain }}"
+            - prometheus.onwalk.net
   alertmanager:
     enabled: false
   prometheus-pushgateway:
