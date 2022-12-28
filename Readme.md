@@ -59,7 +59,7 @@ helm upgrade --install observable-server stable/observableserver -n monitoring -
 
 # Configure
 
-* https://deepflow.your.domain  admin/deepflow
+* https://grafana.your.domain  admin/deepflow
 * https://loki.your.domain
 * https://prometheus.your.domain
 
