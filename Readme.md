@@ -10,7 +10,7 @@
 kubectl get nodes
 kubectl label nodes node-xxxx prometheus=true --overwrite
 kubectl create ns monitoring
-kubectl create secret tls obserable-tls --cert=your.domain.pem --key=your.domain.key -n monitoring
+kubectl create secret tls observable-server-tls --cert=your.domain.pem --key=your.domain.key -n monitoring
 
 cat > values.yaml << EOF
 global:
@@ -22,7 +22,7 @@ loki-distributed:
     hosts:
       - "loki.onwalk.net"
     tls:
-      - secretName: observable-tls
+      - secretName: observable-server-tls
         hosts:
           - loki.onwalk.net
 deepflow:
@@ -35,7 +35,7 @@ prometheus:
       hosts:
         - prometheus.onwalk.net
       tls:
-        - secretName: observable-tls
+        - secretName: observable-server-tls
           hosts:
             - prometheus.onwalk.net
 EOF

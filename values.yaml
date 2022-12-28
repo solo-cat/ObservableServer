@@ -5,7 +5,7 @@
 global:
   domain: onwalk.net
   namespace: monitoring
-  secretName: observable-tls
+  secretName: observable-server-tls
   aws:
     region: "cn-northwest-1"
   repository: artifact.onwalk.net
@@ -27,7 +27,7 @@ loki-distributed:
     hosts:
       - loki.onwalk.net
     tls:
-      - secretName: observable-tls
+      - secretName: observable-server-tls
         hosts:
           - loki.onwalk.net
 deepflow:
@@ -46,7 +46,7 @@ prometheus:
       hosts:
         - prometheus.onwalk.net
       tls:
-        - secretName: observable-tls
+        - secretName: observable-server-tls
           hosts:
             - prometheus.onwalk.net
   alertmanager:
