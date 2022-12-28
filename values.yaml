@@ -13,6 +13,7 @@ global:
     repository: artifact.onwalk.net/k8s/aws-cli
     tag: latest
     pullPolicy: IfNotPresent
+
 neo4j:
   enabled: false
 grafana:
