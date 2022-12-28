@@ -51,7 +51,7 @@ prometheus:
             - prometheus.{{ .Values.global.domain }}
   alertmanager:
     enabled: false
-  pushgateway:
+  prometheus-pushgateway:
     enabled: false
 alertmanger:
   enabled: false
