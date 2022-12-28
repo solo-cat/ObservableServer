@@ -25,11 +25,11 @@ loki:
     enabled: true
     ingressClassName: nginx
     hosts:
-      - loki.{{ .Values.global.domain }}
+      - "loki.{{ .Values.global.domain }}"
     tls:
       - hosts:
-         - loki.{{ .Values.global.domain }}
-        secretName: observable-tls    
+         - "loki.{{ .Values.global.domain }}"
+        secretName: "{{ .Values.global.secretName }}"
 deepflow:
   enabled: true
   ingress:
@@ -44,11 +44,11 @@ prometheus:
       enabled: true
       ingressClassName: nginx
       hosts:
-        - prometheus.{{ .Values.global.domain }}
+        - "prometheus.{{ .Values.global.domain }}"
       tls:
         - secretName: "{{ .Values.global.secretName }}"
           hosts:
-            - prometheus.{{ .Values.global.domain }}
+            - "prometheus.{{ .Values.global.domain }}"
   alertmanager:
     enabled: false
   prometheus-pushgateway:
