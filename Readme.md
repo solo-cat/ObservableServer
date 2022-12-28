@@ -16,7 +16,7 @@ cat > values.yaml << EOF
 global:
   domain: onwalk.net
   namespace: monitoring
-  secretName: observable-tls
+  secretName: observable-server-tls
 loki-distributed:
   ingress:
     hosts:
