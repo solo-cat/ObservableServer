@@ -70,6 +70,7 @@ jobs:
         git config user.email manbuzhe2009@qq.com
         cd ${GITHUB_WORKSPACE}/ && rm *.tgz -f
         cd ${GITHUB_WORKSPACE}/charts && rm *.tgz -f
+        git pull
         git add -A
         git commit -a -m "Auto Merged"
         git push
