@@ -5,7 +5,7 @@
 global:
   domain: onwalk.net 
   namespace: monitoring 
-  secretName: observable-tls    
+  secretName: observable-tls
   aws:
     region: "cn-northwest-1"
   repository: artifact.onwalk.net
