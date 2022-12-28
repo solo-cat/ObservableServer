@@ -20,6 +20,8 @@ grafana:
   enabled: false
 loki-distributed:
   enabled: true
+  ruler:
+    enabled: true
   gateway:
     enabled: false
   ingress:

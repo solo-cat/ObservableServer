@@ -18,6 +18,8 @@ global:
   namespace: monitoring
   secretName: observable-server-tls
 loki-distributed:
+  ruler:
+    enabled: true
   ingress:
     hosts:
       - "loki.onwalk.net"
@@ -52,7 +54,7 @@ EOF
 
 helm repo add stable https://artifact.onwalk.net/chartrepo/k8s/
 helm repo update
-helm upgrade --install observable stable/observableserver -n monitoring -f values.yaml 
+helm upgrade --install observable-server stable/observableserver -n monitoring -f values.yaml 
 ```
 
 # Configure
