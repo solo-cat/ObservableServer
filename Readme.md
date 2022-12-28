@@ -26,16 +26,18 @@ loki-distributed:
         hosts:
           - loki.onwalk.net
 deepflow:
+  enabled: true
   grafana:
+    enabled: true
     ingress:
       enabled: true
-    ingressClassName: nginx
-    hosts:
-      - grafana.onwalk.net
-    tls:
-      - secretName: observable-server-tls
-        hosts:
-          - grafana.onwalk.net
+      ingressClassName: nginx
+      hosts:
+        - grafana.onwalk.net
+      tls:
+        - secretName: observable-server-tls
+          hosts:
+            - grafana.onwalk.net
 prometheus:
   server:
     ingress:
