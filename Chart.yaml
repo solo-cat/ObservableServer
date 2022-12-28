@@ -12,8 +12,8 @@ dependencies:
   condition: grafana.enabled
   version: "6.48.0"
   repository: "https://grafana.github.io/helm-charts"
-- name: loki
-  condition: loki.enabled
+- name: loki-distributed
+  condition: loki-distributed.enabled
   version: "3.8.0"
   repository: "https://grafana.github.io/helm-charts"
 - name: deepflow

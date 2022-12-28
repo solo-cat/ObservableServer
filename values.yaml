@@ -17,7 +17,7 @@ neo4j:
   enabled: false
 grafana:
   enabled: false
-loki:
+loki-distributed:
   enabled: true
   gateway:
     enabled: false
