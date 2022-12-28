@@ -8,12 +8,6 @@ global:
   secretName: observable-server-tls
   aws:
     region: "cn-northwest-1"
-  repository: artifact.onwalk.net
-  image:
-    repository: artifact.onwalk.net/k8s/aws-cli
-    tag: latest
-    pullPolicy: IfNotPresent
-
 neo4j:
   enabled: false
 grafana:
