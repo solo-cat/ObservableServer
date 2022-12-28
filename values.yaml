@@ -27,9 +27,9 @@ loki:
     hosts:
       - "loki.{{ .Values.global.domain }}"
     tls:
-      - hosts:
-         - "loki.{{ .Values.global.domain }}"
-        secretName: "{{ .Values.global.secretName }}"
+      - secretName: "{{ .Values.global.secretName }}"
+        hosts:
+          - "loki.{{ .Values.global.domain }}"
 deepflow:
   enabled: true
   ingress:
