@@ -41,6 +41,10 @@ deepflow:
           hosts:
             - grafana.onwalk.net
 prometheus:
+  kube-state-metrics:
+    image:
+      repository: artifact.onwalk.net/k8s/kube-state-metrics
+      tag: v2.7.0
   server:
     ingress:
       ingressClassName: nginx
