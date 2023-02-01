@@ -75,6 +75,7 @@ helm upgrade --install observable-server stable/observableserver -n monitoring -
 - https://grafana.github.io/helm-charts
 - https://deepflowys.github.io/deepflow
 - https://prometheus-community.github.io/helm-charts
+- https://github.com/alerta/alerta-webui
 
 # Todo
 
