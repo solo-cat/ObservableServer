@@ -59,8 +59,10 @@ jobs:
         cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf neo4j ; helm fetch neo4j/neo4j --untar
         cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf grafana ; helm fetch grafana/grafana --untar
         cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf deepflow ; helm fetch deepflow/deepflow --untar
-        cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf postgresql; helm fetch bitnami/postgresql --untar
-        cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf alerta-web ; helm fetch alerta-web/alerta-web --untar
+        cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf postgresql
+        cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf alerta-web
+        #cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf postgresql; helm fetch bitnami/postgresql --untar
+        #cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf alerta-web ; helm fetch alerta-web/alerta-web --untar
         cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf loki-distributed; helm fetch grafana/loki-distributed --untar
         cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf prometheus ; helm fetch prometheus-community/prometheus  --untar
         cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf alertmanager ; helm fetch prometheus-community/alertmanager --untar
