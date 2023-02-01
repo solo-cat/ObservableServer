@@ -42,6 +42,7 @@ jobs:
         helm repo add grafana https://grafana.github.io/helm-charts
         helm repo add deepflow https://deepflowys.github.io/deepflow
         helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+        helm repo add alerta-web https://hayk96.github.io/alerta-web
         echo "$REPO_PASSWORD" | helm repo add sync --username=admin --password-stdin https://artifact.onwalk.net/chartrepo/k8s/
         helm repo up
 
@@ -57,6 +58,7 @@ jobs:
         cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf neo4j ; helm fetch neo4j/neo4j --untar
         cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf grafana ; helm fetch grafana/grafana --untar
         cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf deepflow ; helm fetch deepflow/deepflow --untar
+        cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf alerta-web ; helm fetch alerta-web/alerta-web --untar
         cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf loki-distributed; helm fetch grafana/loki-distributed --untar
         cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf prometheus ; helm fetch prometheus-community/prometheus  --untar
         cd ${GITHUB_WORKSPACE}/ObservableServer/charts && rm -rvf alertmanager ; helm fetch prometheus-community/alertmanager --untar
