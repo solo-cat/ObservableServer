@@ -77,6 +77,9 @@ helm upgrade --install observable-server stable/observableserver -n monitoring -
 - https://prometheus-community.github.io/helm-charts
 - https://github.com/alerta/alerta-webui
 
+- https://grafana.com/grafana/dashboards/13105-1-k8s-for-prometheus-dashboard-20211010/
+- https://grafana.com/grafana/dashboards/15172-node-exporter-for-prometheus-dashboard-based-on-11074/
+
 # Todo
 
 ## Dev Reference 
