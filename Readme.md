@@ -6,66 +6,7 @@
 
 # Install
 
-```
-kubectl get nodes
-kubectl label nodes node-xxxx prometheus=true --overwrite
-kubectl create ns monitoring
-kubectl create secret tls observable-server-tls --cert=your.domain.pem --key=your.domain.key -n monitoring
-
-cat > values.yaml << EOF
-global:
-  domain: onwalk.net
-  namespace: monitoring
-  secretName: observable-server-tls
-loki-distributed:
-  ruler:
-    enabled: true
-  ingress:
-    hosts:
-      - "loki.onwalk.net"
-    tls:
-      - secretName: observable-server-tls
-        hosts:
-          - loki.onwalk.net
-deepflow:
-  enabled: true
-  grafana:
-    enabled: true
-    ingress:
-      enabled: true
-      ingressClassName: nginx
-      hosts:
-        - grafana.onwalk.net
-      tls:
-        - secretName: observable-server-tls
-          hosts:
-            - grafana.onwalk.net
-prometheus:
-  kube-state-metrics:
-    image:
-      repository: artifact.onwalk.net/k8s/kube-state-metrics
-      tag: v2.7.0
-  server:
-    ingress:
-      ingressClassName: nginx
-      hosts:
-        - prometheus.onwalk.net
-      tls:
-        - secretName: observable-server-tls
-          hosts:
-            - prometheus.onwalk.net
-EOF
-
-helm repo add stable https://artifact.onwalk.net/chartrepo/k8s/
-helm repo update
-helm upgrade --install observable-server stable/observableserver -n monitoring -f values.yaml 
-```
-
-# Configure
-
-* https://grafana.your.domain  admin/deepflow
-* https://loki.your.domain
-* https://prometheus.your.domain
+* [Setup EKS with Self-build MonitorSystem](https://github.com/solo-cat/ObservableServer/blob/main/docs/Setup-EKS-Cloudwatch-with-AWS-credentials.md)
 
 # LiveDemo
 
