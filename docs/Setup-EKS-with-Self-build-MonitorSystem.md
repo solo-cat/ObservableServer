@@ -63,6 +63,19 @@ prometheus:
       rule_files:
         - /etc/config/recording_rules.yml
         - /etc/config/alerting_rules.yml
+    alerting_rules.yml:
+      groups:
+        - name: Instances
+          rules:
+            - alert: InstanceDown
+              expr: up == 0
+              for: 5m
+              labels:
+                severity: page
+              annotations:
+                description: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes.'
+                summary: 'Instance {{ $labels.instance }} down'
+      recording_rules.yml: {}
 alertmanager:
   ingress:
     enabled: true
