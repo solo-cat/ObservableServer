@@ -54,6 +54,15 @@ prometheus:
         - secretName: observable-server-tls
           hosts:
             - prometheus.onwalk.net
+    alertmanagers:
+    - static_configs:
+      - targets:
+        - alertmanager.onwalk.net
+  serverFiles:
+    prometheus.yml:
+      rule_files:
+        - /etc/config/recording_rules.yml
+        - /etc/config/alerting_rules.yml
 alertmanager:
   ingress:
     enabled: true
@@ -101,25 +110,4 @@ helm upgrade --install observable-server stable/observableserver -n monitoring -
 * https://grafana.your.domain  admin/deepflow
 * https://loki.your.domain
 * https://prometheus.your.domain
-
-# LiveDemo
-
-# Reference 
-
-- https://helm.neo4j.com/neo4j
-- https://grafana.github.io/helm-charts
-- https://deepflowys.github.io/deepflow
-- https://prometheus-community.github.io/helm-charts
-- https://github.com/alerta/alerta-webui
-
-- https://grafana.com/grafana/dashboards/13105-1-k8s-for-prometheus-dashboard-20211010/
-- https://grafana.com/grafana/dashboards/15172-node-exporter-for-prometheus-dashboard-based-on-11074/
-
-# Todo
-
-## Dev Reference 
-- https://github.com/YunaiV/ruoyi-vue-pro
-- https://github.com/todoadmin/vue-admin-chart
-- https://github.com/ClaudioWaldvogel/cloudwatch-loki-shipper
-- https://github.com/cpsrepositorio/cps-marketplace-layout
-- https://github.com/Hayaking/clickhouse-keeper-on-k8s
+* https://alertmanager.your.domain
